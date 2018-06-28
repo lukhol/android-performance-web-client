@@ -1,0 +1,29 @@
+{
+  "name": "android-performance-resul-server",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "loaders.css": "^0.1.2",
+    "mdbreact": "^4.4.0",
+    "react": "^16.4.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.4.0",
+    "react-loaders": "^3.0.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^3.0.2",
+    "react-scripts": "1.1.4",
+    "react-transition-group": "^1.2.1",
+    "recharts": "^1.0.0-beta.10",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-promise-middleware": "^3.2.0",
+    "redux-thunk": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

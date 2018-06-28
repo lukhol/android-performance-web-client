@@ -1,0 +1,63 @@
+.bar-chart {
+    width: 100%;
+    height: 300px;
+}
+
+.recharts-wrapper {
+    width: 100%!important;
+}
+
+ 
+.slideIn-left {
+    animation: slideFromLeft-animation 1000ms cubic-bezier(0.075, 0.82, 0.165, 1), fadeIn-animation 600ms ease-in;
+}
+
+.slideIn-right {
+    animation: slideFromRight-animation 1000ms cubic-bezier(0.075, 0.82, 0.165, 1), fadeIn-animation 600ms ease-in;
+}
+
+.scaleIn {
+    animation: scaleIn-animation 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes slideFromLeft-animation {
+    0% {
+        transform: translateX(-50%);
+    }
+    75% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideFromRight-animation {
+    0% {
+        transform: translateX(50%);
+    }
+    75% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes fadeIn-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn-animation {
+    0% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
