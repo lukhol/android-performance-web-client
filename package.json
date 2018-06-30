@@ -5,6 +5,7 @@
   "dependencies": {
     "loaders.css": "^0.1.2",
     "mdbreact": "^4.4.0",
+    "multi-select-react": "^0.1.8",
     "react": "^16.4.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.1",

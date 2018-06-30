@@ -1,15 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
 import './css/SummaryPage.css';
 import TestSummaryCharComponent from '../components/TestSummaryCharComponent';
+import SingleTestSearchComponent from '../components/SingleTestSearchComponent';
+import MultipleTestSearchComponent from '../components/MultipleTestSearchComponent';
 
 //React bootstrap:
 import { Row, Col } from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
-import Loader from 'react-loaders'
+import Loader from 'react-loaders';
 
 import * as SingleTestAction from '../actions/SingleTestAction';
+import * as AverageTestSummaryAction from '../actions/AverageTestSummaryAction';
 
 class SummaryPage extends Component {
     constructor(props) {
@@ -19,16 +22,32 @@ class SummaryPage extends Component {
         this.inputKey = 123456789;
 
         this.prepareLoaderContent = this.prepareLoaderContent.bind(this);
-        this.onSearchResultsButtonClicked = this.onSearchResultsButtonClicked.bind(this);
+        this.onSingleSearchResultsButtonClicked = this.onSingleSearchResultsButtonClicked.bind(this);
+        //this.onMultipleSearchResultsButtonClicked = this.onMultipleSearchResultsButtonClicked.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.preparePageContent = this.preparePageContent.bind(this);
 
+        //Multiselect neccessary functions:
+        // this.onMultiSelectOptionClicked = this.onMultiSelectOptionClicked.bind(this);
+        // this.onMultiSelectSelectedBadgeClicked = this.onMultiSelectSelectedBadgeClicked.bind(this);
+
+        // const multiSelect = [];
+        // if(this.props.allTestIds != null) {
+        //     for(let testSummaryId of this.props.allTestIds) {
+        //         multiSelect.push(
+        //             {id: testSummaryId, label: testSummaryId, value: false}
+        //         );
+        //     }
+        // }
+
         this.state = {
-            searchingTestId: (props.params.id === "0" ? "" : props.params.id)
+            searchingTestId: (props.params.id === "0" ? "" : props.params.id),
+            // multiSelect: multiSelect,
+            // allIds: this.props.allTestIds
         };
 
         if(props.params.id !== "0")
-            this.onSearchResultsButtonClicked();
+            this.onSingleSearchResultsButtonClicked();
     }
 
     prepareLoaderContent(isBusy) {
@@ -42,33 +61,57 @@ class SummaryPage extends Component {
                 </React.Fragment>
             );
         } else {
-            return <div key={this.keyCounter++}></div>;
+            return null;
         }
     }
 
     preparePageContent(success) {
         return (
-            <Row className="slideIn-right scaleIn" key={this.inputKey}>
-                <Col lg={3}></Col>
-                <Col lg={6} lgOffset={3} className="center-block">
-                    <div className="card card-body center-block" style={{padding: "15px"}}>
-                        <Input label="Provide your test id" value={this.state.searchingTestId} onChange={this.handleChange} name="searchingTestId"/>
-                        <Button block color="info" rounded onClick={this.onSearchResultsButtonClicked}>Search for results</Button>
-                        { success ? "" : (<div className="alert alert-danger"style={{marginTop:"15px"}}>Not found results.</div>)}
-                    </div>
-                </Col>
-            </Row>
+            <React.Fragment>
+                <SingleTestSearchComponent key={this.inputKey} 
+                                            success={success}
+                                            handleChange={this.handleChange}
+                                            inputValue={this.state.searchingTestId} 
+                                            onSearchResultsButtonClicked={this.onSingleSearchResultsButtonClicked}/>
+
+                {/* <hr />
+                <MultipleTestSearchComponent onSearchResultsButtonClicked={this.onMultipleSearchResultsButtonClicked}
+                                             multiSelect={this.state.multiSelect}
+                                             optionClicked={this.onMultiSelectOptionClicked}
+                                             selectedBadgeClicked={this.onMultiSelectSelectedBadgeClicked}/> */}
+            </React.Fragment>
         );
     }
 
-    onSearchResultsButtonClicked(event) {
+    onSingleSearchResultsButtonClicked(event) {
+        if(this.state.searchingTestId === "")
+            return; 
+
         store.dispatch(SingleTestAction.getSingleTestResults(this.state.searchingTestId));
         this.inputKey++;
     }
 
+    // onMultipleSearchResultsButtonClicked(event) {
+    //     //Action here
+    //     const selectedTestSummaryIds = [];
+    //     for(let multiSelectItem of this.state.multiSelect) {
+    //         if (multiSelectItem.value == true) 
+    //             selectedTestSummaryIds.push(multiSelectItem.id);
+    //     }
+    //     store.dispatch(AverageTestSummaryAction.getAverageTestSummaryAction(selectedTestSummaryIds));
+    // }
+
+    // onMultiSelectOptionClicked(optionsList) {
+    //     this.setState({ multiSelect: optionsList });
+    // }
+
+    // onMultiSelectSelectedBadgeClicked(optionsList) {
+    //     this.setState({ multiSelect: optionsList });
+    // }
+
     handleChange(event) {
         this.setState({
-            [event.target.getAttribute('name')]: event.target.value
+            [event.target.getAttribute('name')]: event.target.value.trim()
         });
     }
 
@@ -111,7 +154,8 @@ const mapStateToProps = store => {
     return {
         isBusy: store.singleTestState.isBusy,
         testResults: store.singleTestState.testResults,
-        success: store.singleTestState.success
+        success: store.singleTestState.success,
+        //allTestIds: store.testIdsState.testIds
     }
 };
 

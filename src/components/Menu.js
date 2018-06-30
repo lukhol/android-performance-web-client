@@ -51,6 +51,9 @@ export default class Menu extends React.Component {
                         <NavItem eventKey={1} onClick={this.onItemClicked} path="/allTestsSummary">
                             All tests summary 
                         </NavItem>
+                        <NavItem eventKey={2} onClick={this.onItemClicked} path="/averageTestSummary">
+                            Average summary
+                        </NavItem>
                         <NavDropdown title="Common" id="basic-nav-dropdown">
                             <MenuItem eventKey={2}>Action</MenuItem>
                             <MenuItem divider />

@@ -7,9 +7,10 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Layout from './components/Layout';
-import  MainPage from './pages/MainPage';
+import MainPage from './pages/MainPage';
 import SummaryPage from './pages/SummaryPage';
 import AllSummaryPage from './pages/AllSummaryPage';
+import AverageTestSummaryPage from './pages/AverageTestSummaryPage';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -18,6 +19,7 @@ ReactDOM.render(
                 <IndexRoute component={MainPage}></IndexRoute>
                 <Route path="/summaryPage/:id" component={SummaryPage} />
                 <Route path="/allTestsSummary" component={AllSummaryPage} />
+                <Route path="/averageTestSummary" component={AverageTestSummaryPage} />
             </Route>
         </Router>
     </Provider>,
