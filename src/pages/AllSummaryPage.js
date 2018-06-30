@@ -4,7 +4,6 @@ import store from '../store';
 import TestSummaryCharComponent from '../components/TestSummaryCharComponent';
 
 //React bootstrap:
-import { Row, Col } from 'react-bootstrap';
 import Loader from 'react-loaders'
 
 import * as AllTestsAction from '../actions/AllTestsAction';

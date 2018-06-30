@@ -4,15 +4,11 @@ import store from '../store';
 import './css/SummaryPage.css';
 import TestSummaryCharComponent from '../components/TestSummaryCharComponent';
 import SingleTestSearchComponent from '../components/SingleTestSearchComponent';
-import MultipleTestSearchComponent from '../components/MultipleTestSearchComponent';
 
 //React bootstrap:
-import { Row, Col } from 'react-bootstrap';
-import { Input, Button } from 'mdbreact';
 import Loader from 'react-loaders';
 
 import * as SingleTestAction from '../actions/SingleTestAction';
-import * as AverageTestSummaryAction from '../actions/AverageTestSummaryAction';
 
 class SummaryPage extends Component {
     constructor(props) {
@@ -52,11 +48,12 @@ class SummaryPage extends Component {
     preparePageContent(success) {
         return (
             <React.Fragment>
-                <SingleTestSearchComponent key={this.inputKey} 
-                                            success={success}
-                                            handleChange={this.handleChange}
-                                            inputValue={this.state.searchingTestId} 
-                                            onSearchResultsButtonClicked={this.onSingleSearchResultsButtonClicked}/>
+                <SingleTestSearchComponent key={this.inputKey}
+                                           inputLabel="Provide test id" 
+                                           success={success}
+                                           handleChange={this.handleChange}
+                                           inputValue={this.state.searchingTestId} 
+                                           onSearchResultsButtonClicked={this.onSingleSearchResultsButtonClicked}/>
             </React.Fragment>
         );
     }

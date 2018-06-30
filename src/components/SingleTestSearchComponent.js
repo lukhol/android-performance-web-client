@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 
 import { Row, Col } from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
@@ -32,8 +32,8 @@ export default class SingleTestSearchComponent extends React.Component {
                 <Col lg={3}></Col>
                 <Col lg={6} lgOffset={3} className="center-block">
                     <div className="card card-body center-block" style={{padding: "15px"}}>
-                        <Input label="Provide your test id" value={this.props.inputValue} onChange={this.handleOnInputChage} name="searchingTestId"/>
-                        <Button block color={this.props.buttonColor} rounded onClick={this.handleButtonClicked}>Search for results</Button>
+                        <Input label={this.props.inputLabel} value={this.props.inputValue} onChange={this.handleOnInputChage} name="searchingTestId"/>
+                        <Button block color={this.props.buttonColor} rounded onClick={this.handleButtonClicked}>Search</Button>
                         { this.props.success ? "" : this.Alert()}
                     </div>
                 </Col>

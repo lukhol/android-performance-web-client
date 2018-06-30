@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import MultiSelectReact from 'multi-select-react';
 
 import { Row, Col } from 'react-bootstrap';
-import { Input, Button } from 'mdbreact';
+import { Button } from 'mdbreact';
+
+import './css/SelectComponent.css';
 
 export default class MultipleTestSearchComponent extends React.Component {
     constructor(props) {
@@ -31,8 +33,9 @@ export default class MultipleTestSearchComponent extends React.Component {
                 <Col lg={3}></Col>
                 <Col lg={6} lgOffset={3} className="center-block">
                     <div className="card card-body center-block" style={{padding: "15px"}}>
-                        <label style={{color: "#757575"}}>Search</label>
+                        <label style={{color: "#757575"}}>{this.props.label}</label>
                         <MultiSelectReact options={this.props.multiSelect}
+                                          className="minimal"
                                           optionClicked={this.optionClicked.bind(this)}
                                           selectedBadgeClicked={this.selectedBadgeClicked.bind(this)}
                         />  
@@ -40,7 +43,7 @@ export default class MultipleTestSearchComponent extends React.Component {
                                 rounded 
                                 color={this.props.buttonColor} 
                                 style={{marginTop: "15px"}}
-                                onClick={this.handleButtonClicked}>Search for results</Button>
+                                onClick={this.handleButtonClicked}>Search</Button>
                     </div>
                 </Col>
             </Row>
