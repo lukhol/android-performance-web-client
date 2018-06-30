@@ -23,27 +23,11 @@ class SummaryPage extends Component {
 
         this.prepareLoaderContent = this.prepareLoaderContent.bind(this);
         this.onSingleSearchResultsButtonClicked = this.onSingleSearchResultsButtonClicked.bind(this);
-        //this.onMultipleSearchResultsButtonClicked = this.onMultipleSearchResultsButtonClicked.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.preparePageContent = this.preparePageContent.bind(this);
 
-        //Multiselect neccessary functions:
-        // this.onMultiSelectOptionClicked = this.onMultiSelectOptionClicked.bind(this);
-        // this.onMultiSelectSelectedBadgeClicked = this.onMultiSelectSelectedBadgeClicked.bind(this);
-
-        // const multiSelect = [];
-        // if(this.props.allTestIds != null) {
-        //     for(let testSummaryId of this.props.allTestIds) {
-        //         multiSelect.push(
-        //             {id: testSummaryId, label: testSummaryId, value: false}
-        //         );
-        //     }
-        // }
-
         this.state = {
-            searchingTestId: (props.params.id === "0" ? "" : props.params.id),
-            // multiSelect: multiSelect,
-            // allIds: this.props.allTestIds
+            searchingTestId: (props.params.id === "0" ? "" : props.params.id)
         };
 
         if(props.params.id !== "0")
@@ -73,12 +57,6 @@ class SummaryPage extends Component {
                                             handleChange={this.handleChange}
                                             inputValue={this.state.searchingTestId} 
                                             onSearchResultsButtonClicked={this.onSingleSearchResultsButtonClicked}/>
-
-                {/* <hr />
-                <MultipleTestSearchComponent onSearchResultsButtonClicked={this.onMultipleSearchResultsButtonClicked}
-                                             multiSelect={this.state.multiSelect}
-                                             optionClicked={this.onMultiSelectOptionClicked}
-                                             selectedBadgeClicked={this.onMultiSelectSelectedBadgeClicked}/> */}
             </React.Fragment>
         );
     }
@@ -90,24 +68,6 @@ class SummaryPage extends Component {
         store.dispatch(SingleTestAction.getSingleTestResults(this.state.searchingTestId));
         this.inputKey++;
     }
-
-    // onMultipleSearchResultsButtonClicked(event) {
-    //     //Action here
-    //     const selectedTestSummaryIds = [];
-    //     for(let multiSelectItem of this.state.multiSelect) {
-    //         if (multiSelectItem.value == true) 
-    //             selectedTestSummaryIds.push(multiSelectItem.id);
-    //     }
-    //     store.dispatch(AverageTestSummaryAction.getAverageTestSummaryAction(selectedTestSummaryIds));
-    // }
-
-    // onMultiSelectOptionClicked(optionsList) {
-    //     this.setState({ multiSelect: optionsList });
-    // }
-
-    // onMultiSelectSelectedBadgeClicked(optionsList) {
-    //     this.setState({ multiSelect: optionsList });
-    // }
 
     handleChange(event) {
         this.setState({
@@ -155,7 +115,6 @@ const mapStateToProps = store => {
         isBusy: store.singleTestState.isBusy,
         testResults: store.singleTestState.testResults,
         success: store.singleTestState.success,
-        //allTestIds: store.testIdsState.testIds
     }
 };
 
