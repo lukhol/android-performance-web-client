@@ -19,10 +19,13 @@ export default class TestSummaryCharComponent extends Component {
 
        this.testTitles = new Map();
        this.testTitles.set('START_UP', 'Startup time');
-       this.testTitles.set('JSON_DESERIALIZATION', 'Json deserialization');
-       this.testTitles.set('JSON_SERIALIZATION', 'Json serialization');
-       this.testTitles.set('READ_FROM_DEVICE', 'Read from internal storage');
        this.testTitles.set('ARITHMETIC', 'Arithmetic operations');
+       this.testTitles.set('JSON_SERIALIZATION', 'Json serialization');
+       this.testTitles.set('JSON_DESERIALIZATION', 'Json deserialization');
+       this.testTitles.set('READ_FROM_DEVICE', 'Read from internal storage');
+       this.testTitles.set('SAVE_TO_DEVICE', 'Save file to device');
+       this.testTitles.set('SAVE_TO_DATABASE', 'Save to database');
+       this.testTitles.set('LOAD_FROM_DATABASE', 'Load from database');
     }
 
     prepareDataForChart(testResults) {
