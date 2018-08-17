@@ -1,9 +1,11 @@
+import * as Constants from '../common/Constants';
+
 export function getAndroidVersions() {
     return function(dispatch) {
         dispatch({type: "FETCH_ANDROID_VERSIONS_START_ACTION"});  
     
         setTimeout(() => {
-            fetch('http://localhost:9999'+'/api/v1/results/androidVersions', {
+            fetch(Constants.ServerURL+'/api/v1/results/androidVersions', {
                 method: 'GET'
             })
             .then(response => {

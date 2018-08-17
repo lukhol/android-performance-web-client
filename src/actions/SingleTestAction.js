@@ -1,9 +1,11 @@
+import * as Constants from '../common/Constants';
+
 export function getSingleTestResults(testId) {
     return function(dispatch) {
         dispatch({type: "FETCH_SINGLE_TEST_START_ACTION"});  
     
         setTimeout(() => {
-            fetch('http://localhost:9999'+'/api/v1/results/summary/'+testId, {
+            fetch(Constants.ServerURL+'/api/v1/results/summary/'+testId, {
                 method: 'GET'
             })
             .then(response => {

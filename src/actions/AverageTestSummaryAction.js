@@ -1,3 +1,5 @@
+import * as Constants from '../common/Constants';
+
 export function getAverageTestSummaryAction(testSummaryIds) {
     return function(dispatch) {
         dispatch({type: "FETCH_AVERAGE_TEST_SUMMARY_START_ACTION"});
@@ -9,7 +11,7 @@ export function getAverageTestSummaryAction(testSummaryIds) {
         }
 
         setTimeout(() => {
-            fetch('http://localhost:9999'+'/api/v1/results/summary/average/ids?'+testSummaryIdsString, {
+            fetch(Constants.ServerURL+'/api/v1/results/summary/average/ids?'+testSummaryIdsString, {
                 method: 'GET'
             })
             .then(response => {
@@ -39,7 +41,7 @@ export function getAverageTestSummaryByAndroidVersionAction(androidVersion) {
     return function(dispatch) {
         dispatch({type: "FETCH_AVERAGE_TEST_SUMMARY_START_ACTION"});
         setTimeout(() => {
-            fetch('http://localhost:9999'+'/api/v1/results/summary/average/androidVersion?version='+androidVersion, {
+            fetch(Constants.ServerURL+'/api/v1/results/summary/average/androidVersion?version='+androidVersion, {
                 method: 'GET'
             })
             .then(response => {

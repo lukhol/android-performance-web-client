@@ -22,10 +22,12 @@ export default class TestSummaryCharComponent extends Component {
        this.testTitles.set('ARITHMETIC', 'Arithmetic operations');
        this.testTitles.set('JSON_SERIALIZATION', 'Json serialization');
        this.testTitles.set('JSON_DESERIALIZATION', 'Json deserialization');
-       this.testTitles.set('READ_FROM_DEVICE', 'Read from internal storage');
+       this.testTitles.set('READ_FROM_DEVICE', 'Load file from device');
        this.testTitles.set('SAVE_TO_DEVICE', 'Save file to device');
        this.testTitles.set('SAVE_TO_DATABASE', 'Save to database');
        this.testTitles.set('LOAD_FROM_DATABASE', 'Load from database');
+       this.testTitles.set('READ_LAT_LNG', 'Get device location');
+       this.testTitles.set('REST_QUERIES', 'Perform rest queries');
     }
 
     prepareDataForChart(testResults) {
@@ -58,10 +60,12 @@ export default class TestSummaryCharComponent extends Component {
                 }
             }
 
-            for(let i = 0 ; i < nativeTests.length ; i++) {
+            let smallestArraySize = Math.min(nativeTests.length, xamarinFormsTests.length, cordovaTests.length);
+
+            for(let i = 0 ; i < smallestArraySize ; i++) {
                 let testCode = nativeTests[i].testCode;
                 data.push({
-                    name: this.testTitles.get(testCode.trim()),
+                    name: this.testTitles.get(testCode.trim()) + " " + testResults.androidVersion,
                     native: nativeTests[i].time,
                     xamarinForms: xamarinFormsTests.find(item => item.testCode === testCode).time,
                     cordova: cordovaTests.find(item => item.testCode === testCode).time
@@ -105,9 +109,9 @@ export default class TestSummaryCharComponent extends Component {
         const charts = this.prepareChartsArray(data, 0); 
         const startupSectionArray = this.state.testResults != null ? this.prepareChartsArray([{
             name: this.testTitles.get(this.state.testResults.startupTest.testCode.trim()),
-            native: this.state.testResults.startupTest.results[0].totalTime,
-            cordova: this.state.testResults.startupTest.results[1].totalTime,
-            xamarinForms: this.state.testResults.startupTest.results[2].totalTime
+            native: this.state.testResults.startupTest.results[0].thisTime,
+            cordova: this.state.testResults.startupTest.results[1].thisTime,
+            xamarinForms: this.state.testResults.startupTest.results[2].thisTime
         }], 100) : "";
         
         charts.unshift(startupSectionArray[0]);
