@@ -1,1 +1,0 @@
-Previous repo: https://github.com/lukhol/mobile-apps-performance
